@@ -9,5 +9,5 @@
 #============================================================
 
 # Add Custom Plugin
-git clone https://github.com/jerrykuku/luci-theme-argon.git openwrt/package/
-echo "CONFIG_PACKAGE_luci-theme-argon" >> openwrt/.config
+#git clone https://github.com/jerrykuku/luci-theme-argon.git openwrt/package/
+#echo "CONFIG_PACKAGE_luci-theme-argon" >> openwrt/.config
