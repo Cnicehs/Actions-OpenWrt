@@ -61,14 +61,6 @@ jobs:
         cd openwrt
         ../$DIY_P1_SH
     
-    - name: Load custom configuration
-      run: |
-        [ -e files ] && mv files openwrt/files
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x $DIY_P2_SH
-        cd openwrt
-        ../$DIY_P2_SH
-
     - name: Add Plugin
       run: bash $DIY_P3_SH
 
@@ -78,6 +70,14 @@ jobs:
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
+
+    - name: Load custom configuration
+      run: |
+        [ -e files ] && mv files openwrt/files
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        chmod +x $DIY_P2_SH
+        cd openwrt
+        ../$DIY_P2_SH
 
     - name: SSH connection to Actions
       uses: P3TERX/debugger-action@master
