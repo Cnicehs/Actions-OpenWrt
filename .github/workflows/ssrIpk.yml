@@ -61,10 +61,6 @@ jobs:
         cd openwrt
         ../$DIY_P1_SH
     
-    - name: Add Plugin
-      run: bash $DIY_P3_SH
-
-
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
@@ -91,6 +87,9 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+    
+    - name: Add Plugin
+      run: bash $DIY_P3_SH
 
     - name: Compile the firmware
       id: compile
