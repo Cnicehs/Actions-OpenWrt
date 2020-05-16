@@ -21,6 +21,7 @@ env:
   CONFIG_FILE: ssr.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
+  DIY_P3_SH: diy-part3.sh
   SSH_ACTIONS: false
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
@@ -59,13 +60,7 @@ jobs:
         chmod +x $DIY_P1_SH
         cd openwrt
         ../$DIY_P1_SH
-
-    - name: Update feeds
-      run: cd openwrt && ./scripts/feeds update -a
-
-    - name: Install feeds
-      run: cd openwrt && ./scripts/feeds install -a
-
+    
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
@@ -73,6 +68,16 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         ../$DIY_P2_SH
+
+    - name: Add Plugin
+      run: bash $DIY_P3_SH
+
+
+    - name: Update feeds
+      run: cd openwrt && ./scripts/feeds update -a
+
+    - name: Install feeds
+      run: cd openwrt && ./scripts/feeds install -a
 
     - name: SSH connection to Actions
       uses: P3TERX/debugger-action@master
